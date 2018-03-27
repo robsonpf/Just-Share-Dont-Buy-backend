@@ -5,7 +5,7 @@ exports.seed = (knex, Promise) => {
     // Inserts seed entries
     knex('categories').insert({
       id: 1,
-      name: 'Space'
+      name: 'space'
     }),
     knex('categories').insert({
       id: 2,
