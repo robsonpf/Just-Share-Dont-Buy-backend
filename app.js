@@ -22,4 +22,4 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}!`)
 })
 
-module.exprots = app
+module.exports = app
