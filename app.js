@@ -14,8 +14,10 @@ app.use(bodyParser.json())
 app.use(express.static('../Just-Share-Dont-Buy-frontend'))
 
 const reservationsRouters = require('./src/routers/reservations.js')
+const itemsRouters = require('./src/routers/items.js');
 const categoriesRouters = require('./src/routers/categories.js')
 app.use('/reservations', reservationsRouters)
+app.use('/item', itemsRouters)
 app.use('/categories', categoriesRouters)
 
 app.use((err, req, res, next) => {

@@ -7,5 +7,6 @@ router.get('/:id', ctrl.getById)
 router.get('/', ctrl.getAll)
 router.post('/', ctrl.createReservation)
 
+router.delete('/:id', ctrl.deleteById)
 
 module.exports = router

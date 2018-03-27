@@ -1,53 +1,50 @@
 const db = require('../../query/db')
 
-
 getById = (id, fn) => {
-  // console.log('inside model:', id, 'db:', db, 'find:', db.find)
-
-  console.log("getById: ID = " + id)
-
   db.select('*')
-    .from('reservations')
-    .where('id', id)
-    .then((res, err) => {
-      if (err) {
-        return fn(null, err)
-      }
-      console.log("getById: QueryResult: " + JSON.stringify(res));
-      return fn(res, null)
-    })
-};
+  .from('reservations')
+  .where('id', id)
+  .then((res, err) => {
+    if (err)
+      return fn(null, err)
+    //console.log("getById: QueryResult: " + JSON.stringify(res));
+    return fn(res, null)
+})};
 
 getAll = (fn) => {
-  // console.log('inside model:', id, 'db:', db, 'find:', db.find)
-
-  console.log("getAll:Init")
-
   db.select('*')
-    .from('reservations')
-    .then((res, err) => {
-      if (err) {
-        return fn(null, err)
-      }
-      console.log("getAll: QueryResult: " + JSON.stringify(res));
-      return fn(res, null)
-    })
-};
+  .from('reservations')
+  .then((res, err) => {
+    if (err)
+      return fn(null, err)
+    //console.log("getAll: QueryResult: " + JSON.stringify(res));
+    return fn(res, null)
+})};
 
 createReservation = (reservation, fn) => {
-
-  console.log("createReservation:Init")
-
   db('reservations')
-    .insert(reservation)
-    .then((res, err) => {
-      if (err) {
-        return fn(null, err)
-      }
-      console.log("createReservation: InsertResult: " + JSON.stringify(res));
-      return fn(res, null)
-    })
-};
+  .insert(reservation)
+  .then((res, err) => {
+    if (err)
+      return fn(null, err)
+    
+    return fn(res, null)
+})};
 
 
-module.exports = { getById, getAll, createReservation}
+
+deleteById = (id, fn) => {
+  console.log("GREETINGS IM THE MODEL CODE FOR DELETING")
+
+  return db('reservations')
+  .where('id', id)
+  .del()
+  .then(deletedRowsCount => {
+     return deletedRowsCount;
+  }).catch(err => {
+    console.log("Error", err)
+    return err
+  })
+}
+
+module.exports = { getById, getAll, createReservation, deleteById }
