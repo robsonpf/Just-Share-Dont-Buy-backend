@@ -7,7 +7,7 @@ getById = (req, res, next) => {
   const reservation = model.getById(id, (result, error) => {
     if (error) {
       console.log("Error getById");
-      return res.status(404).send("Id not found");
+      res.status(404).send("Id not found");
     }
 
     if (result.length === 0) {
@@ -26,7 +26,7 @@ getAll = (req, res, next) => {
   const reservation = model.getAll((result, error) => {
     if (error) {
       console.log("Error getAll");
-      return res.status(404).send("No Data Available for this Resource");
+      res.status(404).send("No Data Available for this Resource");
     }
 
     res.status(200).json(result)
@@ -41,7 +41,7 @@ createReservation = (req, res, next) => {
   model.createReservation(reservation, (result, error) => {
     if (error) {
       console.log("Error getAll");
-      return res.status(404).send("Error Creating new Reservation");
+      res.status(404).send("Error Creating new Reservation");
     }
 
     res.status(200).json(result)
