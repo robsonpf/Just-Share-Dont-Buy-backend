@@ -11,7 +11,9 @@ if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'))
 app.use(bodyParser.json())
 
 const reservationsRouters = require('./src/routers/reservations.js')
+const itemsRouters = require('./src/routers/items.js');
 app.use('/reservations', reservationsRouters)
+app.use('/item', itemsRouters)
 
 app.use((err, req, res, next) => {
   const status = err.status

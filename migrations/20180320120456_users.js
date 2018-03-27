@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.string('name').notNullable()
     table.string('phone').notNullable()
-    table.string('email').notNullable()
+    table.string('email').notNullable().unique()
   })
 };
 

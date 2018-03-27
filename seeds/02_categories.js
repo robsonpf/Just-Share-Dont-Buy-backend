@@ -9,15 +9,15 @@ exports.seed = (knex, Promise) => {
     }),
     knex('categories').insert({
       id: 2,
-      name: 'Household'
+      name: 'household'
     }),
     knex('categories').insert({
       id: 3,
-      name: 'Sporting Equipment'
+      name: 'sporting_equipment'
     }),
     knex('categories').insert({
       id: 4,
-      name: 'Outdoor Misc'
+      name: 'outdoor_misc'
     })
   ]).then(() => {
     return knex.raw(`SELECT setval('categories_id_seq', (SELECT MAX(id) FROM categories))`)
