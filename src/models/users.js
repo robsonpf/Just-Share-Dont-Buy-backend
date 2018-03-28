@@ -1,17 +1,18 @@
-const category = require('../../query/categories.js')
+const user = require('../../query/users.js')
 
 getAll = (fn) => {
-  category.getAllCategories()
+  user.getAllUsers()
   .then((res, err) => {
     if(err)
-    return fn(null, err)
+      return fn(null, err)
     console.log("getAll: QueryResult: " + JSON.stringify(res));
     return fn(res, null)
   })
 }
 
+
 getById = (id, fn) => {
-  category.getById(id)
+  user.getById(id)
   .then((res, err) => {
     if (err) {
       return fn(null, err)
@@ -20,7 +21,6 @@ getById = (id, fn) => {
     return fn(res, null)
   })
 }
-
 
 module.exports = {
   getAll,

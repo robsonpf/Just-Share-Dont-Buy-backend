@@ -20,9 +20,31 @@ getAll = (req, res, next) => {
   })
 }
 
+
+getById = (req, res, next) => {
+  const id = req.params.id
+  model.getById(id, (result, error) => {
+    if (error) {
+      console.log("Error getById");
+      res.status(404).send("Id not found");
+    }
+
+    if (result.length === 0) {
+      res.status(404).json({
+        status: 404,
+        message: `Category with id ${id} does not exist`,
+        errors: "Not found"
+      })
+    }
+    res.status(200).json(result[0])
+  })
+}
+
+
 createItem = (req, res, next) => {
   let item = req.body;
   console.log(item);
+  console.log('this is controller');
   model.createItem(item, (result, error) => {
 
       if(error) {
@@ -41,4 +63,8 @@ createItem = (req, res, next) => {
   })
 }
 
-module.exports = {getAll, createItem}
+module.exports = {
+  getAll,
+  getById,
+  createItem
+}

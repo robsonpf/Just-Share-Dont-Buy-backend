@@ -16,9 +16,11 @@ app.use(express.static('../Just-Share-Dont-Buy-frontend'))
 const reservationsRouters = require('./src/routers/reservations.js')
 const itemsRouters = require('./src/routers/items.js');
 const categoriesRouters = require('./src/routers/categories.js')
+const usersRouters = require('./src/routers/users.js')
 app.use('/reservations', reservationsRouters)
-app.use('/item', itemsRouters)
+app.use('/items', itemsRouters)
 app.use('/categories', categoriesRouters)
+app.use('/users', usersRouters)
 
 app.use((err, req, res, next) => {
   console.error(err.stack) // Log the stacktrace of any errors that happen
