@@ -63,8 +63,22 @@ createItem = (req, res, next) => {
   })
 }
 
+
+getItemsByCategory = (req, res, next) => {
+  const categoryId = req.params.id
+  model.getByCategory(categoryId, (result, error) => {
+    if (error) {
+      console.log("Error getItemsByCategory");
+      res.status(404).send("Items not found");
+    } else {
+      res.status(200).json(result);
+    }
+  })
+}
+
 module.exports = {
   getAll,
   getById,
-  createItem
+  createItem,
+  getItemsByCategory
 }

@@ -31,9 +31,21 @@ createItem = (item, fn) => {
   })
 }
 
+getByCategory = (categoryId, fn) => {
+  return item.getByCategory(categoryId)
+    .then((res, err) => {
+      if (err) {
+        return fn(null, err)
+      } else {
+        return fn(res, null)
+      }
+    })
+}
+
 
 module.exports = {
   getAll,
   getById,
-  createItem
+  createItem,
+  getByCategory
 }
