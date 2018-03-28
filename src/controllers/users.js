@@ -1,7 +1,8 @@
-const model = require('../models/categories')
+const model = require('../models/users')
+
 
 getAll = (req, res, next) => {
-  const categories = model.getAll((result, error) => {
+  const users = model.getAll((result, error) => {
     if(error) {
       res.status(404).send("No Data Available for this Resource")
     }
@@ -35,7 +36,6 @@ getById = (req, res, next) => {
     res.status(200).json(result[0])
   })
 }
-
 
 module.exports = {
   getAll,

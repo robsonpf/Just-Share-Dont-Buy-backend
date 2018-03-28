@@ -1,44 +1,38 @@
-const db = require('../../query/db')
-
-getById = (id, fn) => {
-  db.select('*')
-  .from('reservations')
-  .where('id', id)
-  .then((res, err) => {
-    if (err)
-      return fn(null, err)
-    //console.log("getById: QueryResult: " + JSON.stringify(res));
-    return fn(res, null)
-})};
+const reservation = require('../../query/reservations.js')
 
 getAll = (fn) => {
-  db.select('*')
-  .from('reservations')
+  reservation.getAllReservations()
   .then((res, err) => {
-    if (err)
-      return fn(null, err)
-    //console.log("getAll: QueryResult: " + JSON.stringify(res));
+    if(err)
+    return fn(null, err)
+    console.log("getAll: QueryResult: " + JSON.stringify(res));
     return fn(res, null)
-})};
+  })
+}
+
+getById = (id, fn) => {
+  reservation.getById(id)
+  .then((res, err) => {
+    if(err)
+      return fn(null, err)
+    console.log("getById: QueryResult: " + JSON.stringify(res));
+    return fn(res, null)
+  })
+}
 
 createReservation = (reservation, fn) => {
-  db('reservations')
-  .insert(reservation)
+  reservation.createNewReservation()
   .then((res, err) => {
-    if (err)
+    if(err)
       return fn(null, err)
-    
+    console.log("createReservation: InsertResult: " + JSON.stringify(res));
     return fn(res, null)
-})};
-
-
+  })
+}
 
 deleteById = (id, fn) => {
   console.log("GREETINGS IM THE MODEL CODE FOR DELETING")
-
-  return db('reservations')
-  .where('id', id)
-  .del()
+  reservation.deleteReservationById(id)
   .then(deletedRowsCount => {
      return deletedRowsCount;
   }).catch(err => {
@@ -47,4 +41,10 @@ deleteById = (id, fn) => {
   })
 }
 
-module.exports = { getById, getAll, createReservation, deleteById }
+
+module.exports = {
+  getById,
+  getAll,
+  createReservation,
+  deleteById
+}
