@@ -4,11 +4,13 @@ const port = process.env.PORT || 3000
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const db = require('./query/db.js')
+const cors = require('cors')
 
 app.disable('x-powered-by')
 
 if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'))
 app.use(bodyParser.json())
+app.use(cors())
 
 // Serve frontend files from the frontend repo
 app.use(express.static('../Just-Share-Dont-Buy-frontend'))
