@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const ctrl = require('../controllers/categories')
+const categoriesController = require('../controllers/categories')
+const itemsController = require('../controllers/items')
 
-router.get('/', ctrl.getAll)
-router.get('/:id', ctrl.getById)
+router.get('/', categoriesController.getAll)
+router.get('/:id', categoriesController.getById)
+router.get('/:id/items', itemsController.getItemsByCategory)
 
 module.exports = router

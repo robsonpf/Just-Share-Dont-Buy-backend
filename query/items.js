@@ -15,9 +15,15 @@ createItem = (item) => {
   .insert(item)
 }
 
+getByCategory = (categoryId) => {
+  return knex('items')
+    .where('category_id', categoryId)
+}
+
 
 module.exports = {
   getAllItems,
   getItemById,
-  createItem
+  createItem,
+  getByCategory
 }
