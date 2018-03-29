@@ -1,7 +1,7 @@
-const item = require('../../query/items')
+const items = require('../../query/items')
 
 getAll = (fn) => {
-  return item.getAllItems()
+  return items.getAllItems()
   .then((res, err) => {
     if(err)
     return fn(null, err)
@@ -10,7 +10,7 @@ getAll = (fn) => {
 }
 
 getById = (id, fn) => {
-  return item.getItemById(id)
+  return items.getItemById(id)
   .then((res, err) => {
     if (err) {
       return fn(null, err)
@@ -21,9 +21,7 @@ getById = (id, fn) => {
 }
 
 createItem = (item, fn) => {
-  console.log('we in model');
-  console.log('this is the item ===', item);
-  return item.createItem(item)
+  return items.createItem(item)
   .then((res, err) => {
     if(err)
       return fn(null, err)
@@ -32,7 +30,7 @@ createItem = (item, fn) => {
 }
 
 getByCategory = (categoryId, fn) => {
-  return item.getByCategory(categoryId)
+  return items.getByCategory(categoryId)
     .then((res, err) => {
       if (err) {
         return fn(null, err)
