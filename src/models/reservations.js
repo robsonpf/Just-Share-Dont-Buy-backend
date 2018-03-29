@@ -1,7 +1,7 @@
-const reservation = require('../../query/reservations.js')
+const reservations = require('../../query/reservations.js')
 
 getAll = (fn) => {
-  reservation.getAllReservations()
+  reservations.getAllReservations()
   .then((res, err) => {
     if(err)
     return fn(null, err)
@@ -11,7 +11,7 @@ getAll = (fn) => {
 }
 
 getById = (id, fn) => {
-  reservation.getById(id)
+  reservations.getById(id)
   .then((res, err) => {
     if(err)
       return fn(null, err)
@@ -21,7 +21,7 @@ getById = (id, fn) => {
 }
 
 createReservation = (reservation, fn) => {
-  reservation.createNewReservation()
+  reservations.createNewReservation(reservation)
   .then((res, err) => {
     if(err)
       return fn(null, err)
@@ -32,8 +32,9 @@ createReservation = (reservation, fn) => {
 
 deleteById = (id, fn) => {
   console.log("GREETINGS IM THE MODEL CODE FOR DELETING")
-  reservation.deleteReservationById(id)
+  reservations.deleteReservationById(id)
   .then(deletedRowsCount => {
+    console.log(deletedRowsCount);
      return deletedRowsCount;
   }).catch(err => {
     console.log("Error", err)

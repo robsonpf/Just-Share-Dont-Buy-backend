@@ -25,7 +25,6 @@ getById = (req, res, next) => {
   const id = req.params.id
   model.getById(id, (result, error) => {
     if (error) {
-      console.log("Error getById");
       res.status(404).send("Id not found");
     }
 
@@ -43,8 +42,6 @@ getById = (req, res, next) => {
 
 createItem = (req, res, next) => {
   let item = req.body;
-  console.log(item);
-  console.log('this is controller');
   model.createItem(item, (result, error) => {
 
       if(error) {
@@ -67,8 +64,7 @@ createItem = (req, res, next) => {
 getItemsByCategory = (req, res, next) => {
   const categoryId = req.params.id
   model.getByCategory(categoryId, (result, error) => {
-    if (error) {
-      console.log("Error getItemsByCategory");
+    if (error) { 
       res.status(404).send("Items not found");
     } else {
       res.status(200).json(result);

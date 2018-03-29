@@ -10,7 +10,6 @@ getItemById = (id) => {
 }
 
 createItem = (item) => {
-  console.log('we in query');
   return knex('items')
   .insert(item)
 }

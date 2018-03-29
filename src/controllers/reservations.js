@@ -59,16 +59,14 @@ createReservation = (req, res, next) => {
 
 deleteById = (req, res, next) => {
   const id = req.params.id
-  console.log("HELLO I AM DELETE BY ID")
-
   const deletionPromise = model.deleteById(id)
 
   deletionPromise.then(deletedRowsCount => {
-    res.status(200).json(deletedRowsCount)
+    res.status(204).json(deletedRowsCount)
   })
 
   deletionPromise.catch(error => {
-    console.log(error)
+
     res.status(404).json({
       status: 404,
       message: `Error Deleting Reservation`,

@@ -9,9 +9,9 @@ getById = (id) => {
   .where('id', id)
 }
 
-createNewReservation = () => {
+createNewReservation = (reservation) => {
   return knex('reservations')
-  .insert(item)
+  .insert(reservation)
 }
 
 deleteReservationById = (id) => {

@@ -21,7 +21,6 @@ getById = (req, res, next) => {
   const id = req.params.id
   model.getById(id, (result, error) => {
     if (error) {
-      console.log("Error getById");
       res.status(404).send("Id not found");
     }
 
