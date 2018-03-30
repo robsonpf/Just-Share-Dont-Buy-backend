@@ -19,10 +19,20 @@ getByCategory = (categoryId) => {
     .where('category_id', categoryId)
 }
 
+updateItemStatus = (id, obj) => {
+  let result
+  return knex('items')
+  .where('id', id)
+  .update(obj)
+  .then((count) => {
+    console.log(count + " items updates")
+  })
+}
 
 module.exports = {
   getAllItems,
   getItemById,
   createItem,
-  getByCategory
+  getByCategory,
+  updateItemStatus
 }

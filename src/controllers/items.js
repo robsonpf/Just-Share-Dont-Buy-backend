@@ -41,7 +41,7 @@ getById = (req, res, next) => {
 
 
 createItem = (req, res, next) => {
-  let item = req.body;
+  let item = req.body
   model.createItem(item, (result, error) => {
 
       if(error) {
@@ -50,7 +50,7 @@ createItem = (req, res, next) => {
       if (result.length === 0) {
         res.status(404).json({
           status: 404,
-          message: 'Error Creating new Item' ,
+          message: 'Error Creating new Item',
           errors: "Not found"
         })
       }
@@ -64,10 +64,22 @@ createItem = (req, res, next) => {
 getItemsByCategory = (req, res, next) => {
   const categoryId = req.params.id
   model.getByCategory(categoryId, (result, error) => {
-    if (error) { 
-      res.status(404).send("Items not found");
+    if (error) {
+      res.status(404).send("Items not found")
     } else {
-      res.status(200).json(result);
+      res.status(200).json(result)
+    }
+  })
+}
+
+
+updateItem = (req, res, next) => {
+  const item = req.params.id;
+  model.updateItem(item, (result, error) => {
+    if (error) {
+      res.status(404).send("Items not found")
+    } else {
+      res.status(200).json(result)
     }
   })
 }
@@ -76,5 +88,6 @@ module.exports = {
   getAll,
   getById,
   createItem,
-  getItemsByCategory
+  getItemsByCategory,
+  updateItem
 }
