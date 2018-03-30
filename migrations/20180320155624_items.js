@@ -8,6 +8,8 @@ exports.up = function(knex, Promise) {
     table.foreign('category_id').references('id').inTable('categories')
     table.string('name').notNullable()
     table.string('description').notNullable()
+    table.boolean('reserved').notNullable().defaultTo(false)
+    table.timestamps(true, true)
   })
 };
 

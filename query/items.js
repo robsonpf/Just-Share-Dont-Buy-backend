@@ -19,11 +19,10 @@ getByCategory = (categoryId) => {
     .where('category_id', categoryId)
 }
 
-updateItemStatus = (id, obj) => {
-  let result
+updateItemStatus = (id, reserved) => {
   return knex('items')
   .where('id', id)
-  .update(obj)
+  .update({reserved})
   .then((count) => {
     console.log(count + " items updates")
   })

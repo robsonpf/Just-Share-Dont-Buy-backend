@@ -40,8 +40,8 @@ getByCategory = (categoryId, fn) => {
     })
 }
 
-updateItem = (item, fn) => {
-  return items.updateItemStatus(item) 
+updateItem = (id, reserved, fn) => {
+  return items.updateItemStatus(id, reserved) 
   .then((res, err) => {
     if (err) {
       return fn(null, err)
