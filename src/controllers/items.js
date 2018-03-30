@@ -74,8 +74,11 @@ getItemsByCategory = (req, res, next) => {
 
 
 updateItem = (req, res, next) => {
-  const item = req.params.id;
-  model.updateItem(item, (result, error) => {
+  const id = req.params.id
+  console.log(id);
+  const reserved = req.body
+  console.log(reserved);
+  model.updateItem(id, reserved, (result, error) => {
     if (error) {
       res.status(404).send("Items not found")
     } else {
