@@ -40,10 +40,22 @@ getByCategory = (categoryId, fn) => {
     })
 }
 
+updateItem = (item, fn) => {
+  return items.updateItemStatus(item) 
+  .then((res, err) => {
+    if (err) {
+      return fn(null, err)
+    } else {
+      return fn(res, null)
+    }
+  })
+}
+
 
 module.exports = {
   getAll,
   getById,
   createItem,
-  getByCategory
+  getByCategory,
+  updateItem
 }
