@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('items', table => {
     table.increments()
@@ -8,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.foreign('category_id').references('id').inTable('categories')
     table.string('name').notNullable()
     table.string('description').notNullable()
+    table.string('photo').notNullable()
   })
 };
 
