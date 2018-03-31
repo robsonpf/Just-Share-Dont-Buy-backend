@@ -5,7 +5,6 @@ exports.up = function(knex, Promise) {
     table.string('name').notNullable()
     table.string('phone').notNullable()
     table.string('email').notNullable().unique()
-    table.timestamps(true, true)
   })
 };
 
