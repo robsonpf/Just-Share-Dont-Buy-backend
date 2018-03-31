@@ -8,8 +8,6 @@ exports.up = function(knex, Promise) {
     table.string('name').notNullable()
     table.string('description').notNullable()
     table.string('photo').notNullable()
-    table.boolean('reserved').notNullable().defaultTo(false)
-    table.timestamps(true, true)
   })
 };
 
