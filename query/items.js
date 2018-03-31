@@ -22,7 +22,7 @@ getByCategory = (categoryId) => {
 updateItemStatus = (id, reserved) => {
   return knex('items')
   .where('id', id)
-  .update({reserved})
+  .update(reserved)
   .then((count) => {
     console.log(count + " items updates")
   })

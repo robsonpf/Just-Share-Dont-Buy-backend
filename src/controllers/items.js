@@ -77,12 +77,12 @@ updateItem = (req, res, next) => {
   const id = req.params.id
   console.log(id);
   const reserved = req.body
-  console.log(reserved);
+  console.log("controller: " + JSON.stringify(reserved));
   model.updateItem(id, reserved, (result, error) => {
     if (error) {
       res.status(404).send("Items not found")
     } else {
-      res.status(200).json(result)
+      res.status(204).json(result)
     }
   })
 }
