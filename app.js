@@ -14,7 +14,7 @@ app.use(cors())
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   // Serve frontend files from the frontend repo
-  app.use(express.static('../Just-Share-Dont-Buy-frontend'))
+  app.use(express.static('../Just-Share-Dont-Buy-frontend')) // this allows you to use local host and deploying will not conflict with production mode
 }
 
 const reservationsRouters = require('./src/routers/reservations.js')
