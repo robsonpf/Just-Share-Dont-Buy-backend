@@ -1,4 +1,4 @@
-const model = require('../models/items')
+ const model = require('../models/items')
 
 getAll = (req, res, next) => {
   const items = model.getAll((result, error) => {

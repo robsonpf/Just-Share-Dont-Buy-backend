@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 // Serve frontend files from the frontend repo
-app.use(express.static('../Just-Share-Dont-Buy-frontend'))
+//app.use(express.static('../Just-Share-Dont-Buy-frontend'))
 
 const reservationsRouters = require('./src/routers/reservations.js')
 const itemsRouters = require('./src/routers/items.js');
