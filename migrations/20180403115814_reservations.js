@@ -7,12 +7,9 @@ exports.up = function(knex, Promise) {
     table.integer('item_id')
     table.foreign('item_id').references('id').inTable('items')
     table.boolean('reserved').notNullable().defaultTo(false)
-    table.timestamps(true, true)
-  })
+    table.timestamps(true,
 };
 
 exports.down = function(knex, Promise) {
   return knex.schema.dropTableIfExists('reservations')
-
-
 };
