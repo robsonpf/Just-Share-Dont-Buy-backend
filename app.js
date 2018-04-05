@@ -6,6 +6,8 @@ const morgan = require('morgan')
 const db = require('./query/db.js')
 const cors = require('cors')
 
+var token = require('./query/token.js');
+
 app.disable('x-powered-by')
 
 if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'))
@@ -16,6 +18,31 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   // Serve frontend files from the frontend repo
   app.use(express.static('../Just-Share-Dont-Buy-frontend')) // this allows you to use local host and deploying will not conflict with production mode
 }
+
+const signUpRouters = require("./src/routers/signUp.js")
+const loginRouters = require("./src/routers/login.js")
+
+app.use("/signup", signUpRouters)
+app.use("/login", loginRouters)
+
+function authorize(req, res, next) {
+  console.log("Validating User token");
+  var auth = req.headers['authorization'];
+  if(auth === null || auth === "") {
+    res.status(400).send({"error": "Bad Request"})
+    return;
+  } else {
+    token.validateJWT(auth, function(decoded, err) {
+      if(err) {
+        res.status(401).send({"error": "Unauthorized"})
+        return;
+      } else {
+        next()
+      }
+    });
+  }
+}
+app.use(authorize)
 
 const reservationsRouters = require('./src/routers/reservations.js')
 const itemsRouters = require('./src/routers/items.js');
