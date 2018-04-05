@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     table.foreign('item_id').references('id').inTable('items')
     table.boolean('reserved').notNullable().defaultTo(false)
     table.timestamps(true, true)
-  )}
+  })
 };
 
 exports.down = function(knex, Promise) {
