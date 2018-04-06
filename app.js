@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const db = require('./query/db.js')
 const cors = require('cors')
+require('dotenv').config()
 
 app.disable('x-powered-by')
 
