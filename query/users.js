@@ -15,6 +15,7 @@ createUser = (user) => {
 }
 
 getByEmailAndHashedPassword = (email, hashed_password) => {
+  console.log('Searching', email, hashed_password)
   return knex('users')
   .where({'email': email, "password": hashed_password})
 }
