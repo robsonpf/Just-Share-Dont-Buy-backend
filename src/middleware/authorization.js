@@ -1,6 +1,5 @@
 var jwt = require('jsonwebtoken');
 const SECRET = "ansud8ra6fsvbdasdihulaigusd91treabsjdna#$%$";
-
 generateToken = (user, fn) => {
   var unsigned = {
     sub: user.email,
