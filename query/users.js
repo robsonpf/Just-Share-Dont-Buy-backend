@@ -9,7 +9,19 @@ getById = (id) => {
   .where('id', id)
 }
 
+createUser = (user) => {
+  return knex('users')
+  .insert(user)
+}
+
+getByEmailAndHashedPassword = (email, hashed_password) => {
+  return knex('users')
+  .where({'email': email, "password": hashed_password})
+}
+
 module.exports = {
   getAllUsers,
-  getById
+  getById,
+  createUser,
+  getByEmailAndHashedPassword
 }

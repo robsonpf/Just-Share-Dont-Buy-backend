@@ -1,29 +1,28 @@
-const model = require("../models/login")
-var token = require('../../query/token.js');
+const model = require('../models/users')
+const crypto = require('crypto')
+const authorization = require('../middleware/authorization')
 
-const login = (req, res, next) => {
+loginUser = (req, res, next) => {
   let user = req.body;
-  console.log("body: " + JSON.stringify(user))
+  const hash = crypto.createHash('sha256');
+  hash.update(user.password);
+  var hashed_password = hash.digest('hex')
 
-  model.login(user, (result, error) => {
-    console.log("Login: " + JSON.stringify(result))
-      if(error) {
-        res.status(400).send("Error Login user")
-        return;
-      } else {
-        token.generateJWT(user, function(tk, err) {
-          if(err) {
-            res.status(400).send("Error Login user")
-            return;
-          } else {
-            res.status(200).json({"access_token": tk})
-            return;
-          }
-        });
-      }
+  model.getByEmailAndHashedPassword(user.email, hashed_password, (result, error) => {
+    if(error) {
+      res.status(400).send("Failed to login")
+    } else {
+      authorization.generateToken(user, (token, err) => {
+        if(err) {
+          res.status(400).send("Failed to login")
+        } else {
+          res.status(200).json({"access_token": token})
+        }
+      });
+    }
   })
 }
 
 module.exports = {
-  login
+  loginUser
 }

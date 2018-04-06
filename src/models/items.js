@@ -3,8 +3,9 @@ const items = require('../../query/items')
 getAll = (fn) => {
   return items.getAllItems()
   .then((res, err) => {
-    if(err)
-    return fn(null, err)
+    if(err) {
+      return fn(null, err)
+    }
     return fn(res, null)
   })
 }
@@ -15,7 +16,6 @@ getById = (id, fn) => {
     if (err) {
       return fn(null, err)
     }
-    console.log("getById: QueryResult: " + JSON.stringify(res));
     return fn(res, null)
   })
 }
@@ -23,8 +23,9 @@ getById = (id, fn) => {
 createItem = (item, fn) => {
   return items.createItem(item)
   .then((res, err) => {
-    if(err)
+    if(err) {
       return fn(null, err)
+    }
     return fn(res, null)
   })
 }
