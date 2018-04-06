@@ -44,6 +44,7 @@ function authorize(req, res, next) {
 }
 app.use(authorize)
 
+// THE FOLLOWING ENDPOINTS ARE PROTECTED, YOU NEED TO SET AUTHORIZATION HEADER WITH A VALID JWT/ACCESS TOKEN
 const reservationsRouters = require('./src/routers/reservations.js')
 const itemsRouters = require('./src/routers/items.js');
 const categoriesRouters = require('./src/routers/categories.js')

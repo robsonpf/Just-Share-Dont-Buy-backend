@@ -12,9 +12,11 @@ signUp = (user, fn) => {
   // var hash = bcrypt.hashSync(user.password, SALT)
   // user.password = hash;
 
-  knex('users')
+  return knex('users')
   .insert(user)
   .then((res, err) => {
+    console.log('res', res);
+    console.log('err', err);
     if(err)
       return fn(null, err)
     return fn(res, null)
