@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const ctrl = require('../controllers/users')
+const authorization = require("../middleware/authorization")
 
-router.get('/', ctrl.getAll)
-router.get('/:id', ctrl.getById)
+router.post("/", ctrl.createUser)
+// Only protect these routes
+router.get('/', [authorization.protected], ctrl.getAll)
+router.get('/:id', [authorization.protected], ctrl.getById)
 
 module.exports = router

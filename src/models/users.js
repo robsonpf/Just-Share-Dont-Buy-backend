@@ -1,7 +1,7 @@
-const user = require('../../query/users.js')
+const db = require('../../query/users.js')
 
 getAll = (fn) => {
-  user.getAllUsers()
+  db.getAllUsers()
   .then((res, err) => {
     if(err)
       return fn(null, err)
@@ -10,9 +10,8 @@ getAll = (fn) => {
   })
 }
 
-
 getById = (id, fn) => {
-  user.getById(id)
+  db.getById(id)
   .then((res, err) => {
     if (err) {
       return fn(null, err)
@@ -22,7 +21,29 @@ getById = (id, fn) => {
   })
 }
 
+createUser = (user, fn) => {
+  return db.createUser(user)
+  .then((res, err) => {
+    if(err)
+      return fn(null, err)
+    return fn(res, null)
+  })
+}
+
+getByEmailAndHashedPassword = (email, hashed_password, fn) => {
+  db.getByEmailAndHashedPassword(email, hashed_password)
+  .then((res, err) => {
+    if (err) {
+      return fn(null, err)
+    }
+    console.log("getByEmailAndHashedPassword: QueryResult: " + JSON.stringify(res));
+    return fn(res, null)
+  })
+}
+
 module.exports = {
   getAll,
-  getById
+  getById,
+  createUser,
+  getByEmailAndHashedPassword
 }
