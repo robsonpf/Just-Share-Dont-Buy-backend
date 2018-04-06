@@ -63,7 +63,7 @@ createUser = (req, res, next) => {
       if(err) {
         res.status(400).send("Failed to generate token")
       } else {
-        res.status(201).json({"access_token": token})
+        res.status(201).json({access_token: token, username: user.name})
       }
     });
   })
