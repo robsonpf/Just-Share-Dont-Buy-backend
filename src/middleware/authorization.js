@@ -19,7 +19,7 @@ generateToken = (user, fn) => {
 
 function protected(req, res, next) {
   if(!req.headers['authorization']) {
-    res.status(400).send({"error": "Bad Request"})
+    res.status(401).send({"error": "Bad Request"})
   } else {
     const token = req.headers['authorization'].replace('Bearer ', '');
     jwt.verify(token, SECRET, function(err, decoded) {
